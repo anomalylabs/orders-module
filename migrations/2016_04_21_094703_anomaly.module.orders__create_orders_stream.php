@@ -38,6 +38,10 @@ class AnomalyModuleOrdersCreateOrdersStream extends Migration
             'required' => true,
             'unique'   => true,
         ],
+        'status'     => [
+            'required' => true,
+        ],
+        'tags',
     ];
 
 }

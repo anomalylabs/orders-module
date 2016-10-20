@@ -27,6 +27,21 @@ class AnomalyModuleOrdersCreateOrdersFields extends Migration
         'target'     => 'anomaly.field_type.slug',
         'value'      => 'anomaly.field_type.text',
         'number'     => 'anomaly.field_type.text',
+        'tags'       => 'anomaly.field_type.tags',
+        'status'     => [
+            'type'   => 'anomaly.field_type.select',
+            'config' => [
+                'options' => [
+                    'pending'    => 'anomaly.module.orders::field.status.option.pending',
+                    'processing' => 'anomaly.module.orders::field.status.option.processing',
+                    'on_hold'    => 'anomaly.module.orders::field.status.option.on_hold',
+                    'completed'  => 'anomaly.module.orders::field.status.option.completed',
+                    'cancelled'  => 'anomaly.module.orders::field.status.option.cancelled',
+                    'refunded'   => 'anomaly.module.orders::field.status.option.refunded',
+                    'failed'     => 'anomaly.module.orders::field.status.option.failed',
+                ],
+            ],
+        ],
         'quantity'   => [
             'type'   => 'anomaly.field_type.integer',
             'config' => [
