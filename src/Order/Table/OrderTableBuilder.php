@@ -36,6 +36,10 @@ class OrderTableBuilder extends TableBuilder
             'value'   => 'entry.status_label',
         ],
         'entry.user.display_name ?: "Guest"',
+        'entry.total()'       => [
+            'heading' => 'Total $',
+            'wrapper' => '${value}',
+        ],
     ];
 
     /**

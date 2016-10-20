@@ -26,6 +26,7 @@ class AnomalyModuleOrdersCreateOrdersFields extends Migration
         'type'       => 'anomaly.field_type.slug',
         'target'     => 'anomaly.field_type.slug',
         'value'      => 'anomaly.field_type.text',
+        'number'     => 'anomaly.field_type.text',
         'quantity'   => [
             'type'   => 'anomaly.field_type.integer',
             'config' => [

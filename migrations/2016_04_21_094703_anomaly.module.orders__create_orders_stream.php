@@ -34,6 +34,10 @@ class AnomalyModuleOrdersCreateOrdersStream extends Migration
         'ip_address' => [
             'required' => true,
         ],
+        'number'     => [
+            'required' => true,
+            'unique'   => true,
+        ],
     ];
 
 }

@@ -4,6 +4,13 @@ use Anomaly\OrdersModule\Order\Form\OrderFormBuilder;
 use Anomaly\OrdersModule\Order\Table\OrderTableBuilder;
 use Anomaly\Streams\Platform\Http\Controller\AdminController;
 
+/**
+ * Class OrdersController
+ *
+ * @link   http://pyrocms.com/
+ * @author PyroCMS, Inc. <support@pyrocms.com>
+ * @author Ryan Thompson <ryan@pyrocms.com>
+ */
 class OrdersController extends AdminController
 {
 
