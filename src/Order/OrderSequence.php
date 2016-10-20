@@ -33,13 +33,14 @@ class OrderSequence
     /**
      * Return the next order number.
      *
+     * @param null $default
      * @return null|string
      */
-    public function next()
+    public function next($default = null)
     {
         /* @var OrderInterface $last */
         if (!$last = $this->orders->first('DESC')) {
-            return null;
+            return $default;
         }
 
         return $this->increment($last);
@@ -53,6 +54,8 @@ class OrderSequence
      */
     public function increment(OrderInterface $last)
     {
-        return 'Test';
+        $number = $last->getNumber();
+
+        return ++$number;
     }
 }

@@ -19,4 +19,10 @@ return [
     'last_modified' => [
         'name' => 'Last Modified',
     ],
+    'number'        => [
+        'name' => 'Number',
+    ],
+    'total'         => [
+        'name' => 'Total',
+    ],
 ];

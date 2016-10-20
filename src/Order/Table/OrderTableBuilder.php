@@ -26,19 +26,15 @@ class OrderTableBuilder extends TableBuilder
      * @var array|string
      */
     protected $columns = [
-        'entry.last_modified' => [
-            'sort_column' => 'updated_at',
-        ],
-        'ip_address',
+        'number',
         'entry.items.quantity',
         [
             'heading' => 'module::field.status.name',
-            'value'   => 'entry.status_label',
+            'value'   => 'entry.label(entry.status)',
         ],
         'entry.user.display_name ?: "Guest"',
-        'entry.total()'       => [
-            'heading' => 'Total $',
-            'wrapper' => '${value}',
+        '{{ currency_format(entry.total()) }}' => [
+            'heading' => 'total',
         ],
     ];
 

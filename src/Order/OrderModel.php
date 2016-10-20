@@ -1,21 +1,20 @@
 <?php namespace Anomaly\OrdersModule\Order;
 
-use Anomaly\OrdersModule\Order\Contract\OrderInterface;
 use Anomaly\OrdersModule\Item\ItemCollection;
 use Anomaly\OrdersModule\Item\ItemModel;
 use Anomaly\OrdersModule\Modifier\Contract\ModifierInterface;
 use Anomaly\OrdersModule\Modifier\ModifierCollection;
 use Anomaly\OrdersModule\Modifier\ModifierModel;
+use Anomaly\OrdersModule\Order\Contract\OrderInterface;
 use Anomaly\Streams\Platform\Model\Orders\OrdersOrdersEntryModel;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * Class OrderModel
  *
- * @link          http://pyrocms.com/
- * @author        PyroCMS, Inc. <support@pyrocms.com>
- * @author        Ryan Thompson <ryan@pyrocms.com>
- * @package       Anomaly\OrdersModule\Order
+ * @link   http://pyrocms.com/
+ * @author PyroCMS, Inc. <support@pyrocms.com>
+ * @author Ryan Thompson <ryan@pyrocms.com>
  */
 class OrderModel extends OrdersOrdersEntryModel implements OrderInterface
 {
@@ -59,7 +58,7 @@ class OrderModel extends OrdersOrdersEntryModel implements OrderInterface
     /**
      * Return the total adjustments.
      *
-     * @param $type
+     * @param        $type
      * @param string $target
      */
     public function adjustments($type)
@@ -99,6 +98,16 @@ class OrderModel extends OrdersOrdersEntryModel implements OrderInterface
     public function getStrId()
     {
         return $this->str_id;
+    }
+
+    /**
+     * Get the number.
+     *
+     * @return string
+     */
+    public function getNumber()
+    {
+        return $this->number;
     }
 
     /**

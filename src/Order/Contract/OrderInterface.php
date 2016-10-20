@@ -53,6 +53,13 @@ interface OrderInterface extends EntryInterface
     public function getStrId();
 
     /**
+     * Get the number.
+     *
+     * @return string
+     */
+    public function getNumber();
+
+    /**
      * Get related items.
      *
      * @return ItemCollection
