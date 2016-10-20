@@ -31,13 +31,9 @@ class AnomalyModuleOrdersCreateOrdersStream extends Migration
             'required' => true,
             'unique'   => true,
         ],
-        'session'    => [
-            'required' => true,
-        ],
         'ip_address' => [
             'required' => true,
         ],
-        'user',
     ];
 
 }

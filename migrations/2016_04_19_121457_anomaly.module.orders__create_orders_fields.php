@@ -19,7 +19,6 @@ class AnomalyModuleOrdersCreateOrdersFields extends Migration
      */
     protected $fields = [
         'str_id'     => 'anomaly.field_type.text',
-        'session'    => 'anomaly.field_type.text',
         'price'      => 'anomaly.field_type.decimal',
         'ip_address' => 'anomaly.field_type.text',
         'options'    => 'anomaly.field_type.textarea',
@@ -33,7 +32,7 @@ class AnomalyModuleOrdersCreateOrdersFields extends Migration
                 'min' => 1,
             ],
         ],
-        'order'       => [
+        'order'      => [
             'type'   => 'anomaly.field_type.relationship',
             'config' => [
                 'related' => 'Anomaly\OrdersModule\Order\OrderModel',
@@ -43,12 +42,6 @@ class AnomalyModuleOrdersCreateOrdersFields extends Migration
             'type'   => 'anomaly.field_type.relationship',
             'config' => [
                 'related' => 'Anomaly\OrdersModule\Item\ItemModel',
-            ],
-        ],
-        'user'       => [
-            'type'   => 'anomaly.field_type.relationship',
-            'config' => [
-                'related' => 'Anomaly\UsersModule\User\UserModel',
             ],
         ],
         'entry'      => 'anomaly.field_type.polymorphic',
