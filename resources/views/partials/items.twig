@@ -1,0 +1,31 @@
+<div class="media">
+    <div class="media-body">
+
+        <p>
+            <input
+                    class="form-control"
+                    name="quantity[{{ item.id }}]"
+                    value="{{ item.quantity }}"
+                    style="width: 6rem; display: inline-block; text-align: center;">
+
+            <strong class="media-heading">{{ item.name }}</strong>
+
+            &mdash;
+
+            {{ currency_format(item.subtotal) }}
+
+            <br>
+        </p>
+
+        {% if item.sku %}
+            <small class="text-muted">SKU: {{ item.sku }} &mdash;</small>
+        {% endif %}
+
+        <a href="{{ item.route('remove') }}" class="text-muted">
+            Remove
+        </a>
+
+    </div>
+</div>
+
+<br>

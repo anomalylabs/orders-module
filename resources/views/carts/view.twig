@@ -1,0 +1,63 @@
+{% extends layout('order') %}
+
+{% block content %}
+    <div id="order">
+
+        <div class="jumbotron text-center">
+            <h1>Shopping Order</h1>
+        </div>
+
+        {{ form_open({'url': order().route('update')}) }}
+        {% if not order.items.isEmpty() %}
+            {% for item in order.items %}
+                {% include "anomaly.module.orders::partials/items" %}
+            {% endfor %}
+
+            <hr>
+
+            <button class="btn btn-primary">Update</button>
+
+            <a href="{{ url('/') }}" class="btn btn-primary pull-right">Continue Shopping</a>
+
+            <hr>
+
+            <div class="text-right">
+
+                <h4>
+                    <small>Sub-total: {{ currency_format(order().subtotal) }}</small>
+
+                    {% if order().adjustments(['discount', 'coupon']) %}
+                        <br>
+                        <small>Discounts: {{ currency_format(order().adjustments(['discount', 'coupon'])) }}</small>
+                    {% endif %}
+
+                    {% if order().adjustments('shipping') %}
+                        <br>
+                        <small>Shipping: {{ currency_format(order().adjustments('shipping')) }}</small>
+                    {% endif %}
+
+                    {% if order().adjustments('tax') %}
+                        <br>
+                        <small>Taxes: {{ currency_format(order().adjustments('tax')) }}</small>
+                    {% endif %}
+
+                    <br>
+                    <br>
+                    Total: {{ currency_format(order().total) }}
+                </h4>
+
+                <br>
+                <br>
+
+                <a href="{{ url('checkout') }}" class="btn btn-primary">
+                    Checkout
+                </a>
+            </div>
+
+        {% else %}
+            Your order is empty! <a href="{{ url('/') }}">Continue shopping.</a>
+        {% endif %}
+        {{ form_close() }}
+
+    </div>
+{% endblock %}

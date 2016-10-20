@@ -1,0 +1,29 @@
+{
+    "name": "anomaly/orders-module",
+    "type": "streams-addon",
+    "description": "A powerful shopping order engine for your online store.",
+    "keywords": [
+        "ecommerce",
+        "pyrocms order",
+        "order module",
+        "laravel order"
+    ],
+    "homepage": "http://pyrocms.com/",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "PyroCMS, Inc.",
+            "email": "support@pyrocms.com",
+            "homepage": "http://pyrocms.com/",
+            "role": "Owner"
+        }
+    ],
+    "support": {
+        "email": "support@pyrocms.com"
+    },
+    "autoload": {
+        "psr-4": {
+            "Anomaly\\OrdersModule\\": "src/"
+        }
+    }
+}
