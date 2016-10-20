@@ -47,13 +47,6 @@ interface ItemInterface extends EntryInterface
     public function getOrder();
 
     /**
-     * Get the order relation.
-     *
-     * @return BelongsTo
-     */
-    public function order();
-
-    /**
      * Get the price.
      *
      * @return float
