@@ -18,7 +18,15 @@ class OrderTableBuilder extends TableBuilder
      *
      * @var array|string
      */
-    protected $filters = [];
+    protected $filters = [
+        'search' => [
+            'fields' => [
+                'number',
+            ],
+        ],
+        'status',
+        'tags',
+    ];
 
     /**
      * The table columns.
@@ -27,14 +35,13 @@ class OrderTableBuilder extends TableBuilder
      */
     protected $columns = [
         'number',
-        'entry.items.quantity',
         [
-            'heading' => 'module::field.status.name',
-            'value'   => 'entry.label(entry.status)',
+            'heading' => 'anomaly.module.orders::field.status.name',
+            'value'   => 'entry.label(entry.status.value)',
         ],
-        'entry.user.display_name ?: "Guest"',
+        'entry.tags.labels|join(" ")',
         '{{ currency_format(entry.total()) }}' => [
-            'heading' => 'total',
+            'heading' => 'anomaly.module.orders::field.total.name',
         ],
     ];
 

@@ -5,9 +5,9 @@ use Anomaly\Streams\Platform\Database\Migration\Migration;
 /**
  * Class AnomalyModuleOrdersCreateOrdersStream
  *
- * @link          http://pyrocms.com/
- * @author        PyroCMS, Inc. <support@pyrocms.com>
- * @author        Ryan Thompson <ryan@pyrocms.com>
+ * @link   http://pyrocms.com/
+ * @author PyroCMS, Inc. <support@pyrocms.com>
+ * @author Ryan Thompson <ryan@pyrocms.com>
  */
 class AnomalyModuleOrdersCreateOrdersStream extends Migration
 {
@@ -34,6 +34,9 @@ class AnomalyModuleOrdersCreateOrdersStream extends Migration
         'ip_address' => [
             'required' => true,
         ],
+        'date'       => [
+            'required' => true,
+        ],
         'number'     => [
             'required' => true,
             'unique'   => true,
@@ -42,6 +45,16 @@ class AnomalyModuleOrdersCreateOrdersStream extends Migration
             'required' => true,
         ],
         'tags',
+        'first_name',
+        'last_name',
+        'email',
+        'company',
+        'phone',
+        'address1',
+        'address2',
+        'city',
+        'postal_code',
+        'country',
+        'state',
     ];
-
 }
