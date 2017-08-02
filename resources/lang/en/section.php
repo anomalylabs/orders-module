@@ -1,7 +1,13 @@
 <?php
 
 return [
-    'orders' => [
+    'orders'    => [
         'title' => 'Orders',
+    ],
+    'payments'  => [
+        'title' => 'Payments',
+    ],
+    'shipments' => [
+        'title' => 'Shipments',
     ],
 ];

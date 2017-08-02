@@ -24,7 +24,6 @@ class OrderTableBuilder extends TableBuilder
                 'number',
             ],
         ],
-        'status',
         'tags',
     ];
 

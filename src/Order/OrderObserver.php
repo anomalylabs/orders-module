@@ -1,7 +1,6 @@
 <?php namespace Anomaly\OrdersModule\Order;
 
 use Anomaly\OrdersModule\Order\Command\CalculateTotals;
-use Anomaly\OrdersModule\Order\Command\SetCustomer;
 use Anomaly\OrdersModule\Order\Command\SetIpAddress;
 use Anomaly\OrdersModule\Order\Command\SetNumber;
 use Anomaly\OrdersModule\Order\Command\SetStrId;
@@ -30,7 +29,6 @@ class OrderObserver extends EntryObserver
     {
         $this->dispatch(new SetStrId($entry));
         $this->dispatch(new SetNumber($entry));
-        $this->dispatch(new SetCustomer($entry));
         $this->dispatch(new SetIpAddress($entry));
 
         parent::creating($entry);
@@ -43,7 +41,7 @@ class OrderObserver extends EntryObserver
      */
     public function created(EntryInterface $entry)
     {
-        $this->events->fire(new OrderWasCreated($entry));
+        $this->events->dispatch(new OrderWasCreated($entry));
 
         parent::created($entry);
     }

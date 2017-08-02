@@ -25,6 +25,21 @@ return [
     'date'          => [
         'name' => 'Date',
     ],
+    'currency'      => [
+        'name' => 'Currency',
+    ],
+    'subtotal'      => [
+        'name' => 'Subtotal',
+    ],
+    'discounts'     => [
+        'name' => 'Discounts',
+    ],
+    'tax'           => [
+        'name' => 'Tax',
+    ],
+    'customer'      => [
+        'name' => 'Customer',
+    ],
     'first_name'    => [
         'name'         => 'First Name',
         'instructions' => 'Specify the customers first name.',
