@@ -1,4 +1,7 @@
-<?php namespace Anomaly\OrdersModule\Order\Billing;
+<?php namespace Anomaly\OrdersModule\Order\Billing\Traits;
+
+use Anomaly\OrdersModule\Order\OrderAddress;
+use Anomaly\StoreModule\Contract\AddressInterface;
 
 /**
  * Class BillingAddress

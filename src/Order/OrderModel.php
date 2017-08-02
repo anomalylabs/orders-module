@@ -4,11 +4,11 @@ use Anomaly\OrdersModule\Item\ItemCollection;
 use Anomaly\OrdersModule\Item\ItemModel;
 use Anomaly\OrdersModule\Modifier\ModifierCollection;
 use Anomaly\OrdersModule\Modifier\ModifierModel;
-use Anomaly\OrdersModule\Order\Billing\BillingAddress;
+use Anomaly\OrdersModule\Order\Billing\Traits\BillingAddress;
+use Anomaly\OrdersModule\Order\Billing\Traits\ShippingAddress;
 use Anomaly\OrdersModule\Order\Contract\OrderInterface;
 use Anomaly\OrdersModule\Shipment\ShipmentCollection;
 use Anomaly\OrdersModule\Shipment\ShipmentModel;
-use Anomaly\StoreModule\Contract\AddressInterface;
 use Anomaly\Streams\Platform\Model\Orders\OrdersOrdersEntryModel;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
@@ -23,6 +23,7 @@ class OrderModel extends OrdersOrdersEntryModel implements OrderInterface
 {
 
     use BillingAddress;
+    use ShippingAddress;
 
     /**
      * The cascading relations.
