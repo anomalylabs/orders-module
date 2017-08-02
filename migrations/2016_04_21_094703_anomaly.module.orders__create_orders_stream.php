@@ -34,27 +34,27 @@ class AnomalyModuleOrdersCreateOrdersStream extends Migration
         'ip_address' => [
             'required' => true,
         ],
-        'date'       => [
+        'state'      => [
             'required' => true,
         ],
+        'currency'   => [
+            'required' => true,
+        ],
+        'total',
+        'subtotal',
+        'discounts',
+        'tax',
+        'date',
         'number'     => [
-            'required' => true,
-            'unique'   => true,
-        ],
-        'status'     => [
-            'required' => true,
+            'unique' => true,
         ],
         'tags',
-        'first_name',
-        'last_name',
-        'email',
-        'company',
-        'phone',
-        'address1',
-        'address2',
-        'city',
-        'postal_code',
-        'country',
-        'state',
+        'customer',
+        'billing_address',
+        'shipping_address',
+        'checkout_state',
+        'payment_state',
+        'shipping_state',
+        'quantity',
     ];
 }

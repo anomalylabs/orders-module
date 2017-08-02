@@ -1,7 +1,7 @@
 <?php namespace Anomaly\OrdersModule\Modifier\Contract;
 
-use Anomaly\OrdersModule\Order\Contract\OrderInterface;
 use Anomaly\OrdersModule\Item\Contract\ItemInterface;
+use Anomaly\OrdersModule\Order\Contract\OrderInterface;
 use Anomaly\Streams\Platform\Entry\Contract\EntryInterface;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -116,4 +116,11 @@ interface ModifierInterface extends EntryInterface
      * @return array
      */
     public function getProperties();
+
+    /**
+     * Get the source.
+     *
+     * @return null|EntryInterface
+     */
+    public function getSource();
 }

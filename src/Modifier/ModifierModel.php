@@ -1,10 +1,11 @@
 <?php namespace Anomaly\OrdersModule\Modifier;
 
-use Anomaly\OrdersModule\Order\Contract\OrderInterface;
 use Anomaly\OrdersModule\Item\Contract\ItemInterface;
 use Anomaly\OrdersModule\Modifier\Command\ApplyModifier;
 use Anomaly\OrdersModule\Modifier\Command\CalculateValue;
 use Anomaly\OrdersModule\Modifier\Contract\ModifierInterface;
+use Anomaly\OrdersModule\Order\Contract\OrderInterface;
+use Anomaly\Streams\Platform\Entry\Contract\EntryInterface;
 use Anomaly\Streams\Platform\Model\Orders\OrdersModifiersEntryModel;
 
 /**
@@ -48,6 +49,16 @@ class ModifierModel extends OrdersModifiersEntryModel implements ModifierInterfa
     public function isAddition()
     {
         return (new ModifierValue())->isAddition($this->getValue());
+    }
+
+    /**
+     * Get the value.
+     *
+     * @return string
+     */
+    public function getValue()
+    {
+        return $this->value;
     }
 
     /**
@@ -122,16 +133,6 @@ class ModifierModel extends OrdersModifiersEntryModel implements ModifierInterfa
     }
 
     /**
-     * Get the value.
-     *
-     * @return string
-     */
-    public function getValue()
-    {
-        return $this->value;
-    }
-
-    /**
      * Get the properties.
      *
      * @return array
@@ -162,5 +163,15 @@ class ModifierModel extends OrdersModifiersEntryModel implements ModifierInterfa
         $this->attributes['properties'] = json_encode($properties);
 
         return $this;
+    }
+
+    /**
+     * Get the source.
+     *
+     * @return null|EntryInterface
+     */
+    public function getSource()
+    {
+        return $this->source;
     }
 }

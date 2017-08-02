@@ -1,9 +1,10 @@
 <?php namespace Anomaly\OrdersModule\Item\Contract;
 
-use Anomaly\OrdersModule\Order\Contract\OrderInterface;
 use Anomaly\OrdersModule\Modifier\ModifierCollection;
+use Anomaly\OrdersModule\Order\Contract\OrderInterface;
+use Anomaly\StoreModule\Contract\PurchasableInterface;
 use Anomaly\Streams\Platform\Entry\Contract\EntryInterface;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Anomaly\Streams\Platform\Image\Image;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
@@ -18,33 +19,11 @@ interface ItemInterface extends EntryInterface
 {
 
     /**
-     * Return the item total.
+     * Get the item image.
      *
-     * @return float
+     * @return Image|null
      */
-    public function total();
-
-    /**
-     * Return the item subtotal.
-     *
-     * @return float
-     */
-    public function subtotal();
-
-    /**
-     * Calculate total adjustments.
-     *
-     * @param $type
-     * @return float
-     */
-    public function calculate($type);
-
-    /**
-     * Get the related order.
-     *
-     * @return OrderInterface
-     */
-    public function getOrder();
+    public function getImage();
 
     /**
      * Get the price.
@@ -54,11 +33,25 @@ interface ItemInterface extends EntryInterface
     public function getPrice();
 
     /**
-     * Get the options.
+     * Get the total.
      *
-     * @return array
+     * @return float
      */
-    public function getOptions();
+    public function getTotal();
+
+    /**
+     * Get the subtotal.
+     *
+     * @return float
+     */
+    public function getSubtotal();
+
+    /**
+     * Get the tax.
+     *
+     * @return float
+     */
+    public function getTax();
 
     /**
      * Get the quantity.
@@ -68,11 +61,18 @@ interface ItemInterface extends EntryInterface
     public function getQuantity();
 
     /**
-     * Get the properties.
+     * Get the related order.
      *
-     * @return array
+     * @return OrderInterface
      */
-    public function getProperties();
+    public function getOrder();
+
+    /**
+     * Get the related purchasable.
+     *
+     * @return null|PurchasableInterface
+     */
+    public function getPurchasable();
 
     /**
      * Get related modifiers.

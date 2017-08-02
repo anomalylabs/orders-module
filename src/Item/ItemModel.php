@@ -1,9 +1,11 @@
 <?php namespace Anomaly\OrdersModule\Item;
 
-use Anomaly\OrdersModule\Order\Contract\OrderInterface;
 use Anomaly\OrdersModule\Item\Contract\ItemInterface;
 use Anomaly\OrdersModule\Modifier\ModifierCollection;
 use Anomaly\OrdersModule\Modifier\ModifierModel;
+use Anomaly\OrdersModule\Order\Contract\OrderInterface;
+use Anomaly\StoreModule\Contract\PurchasableInterface;
+use Anomaly\Streams\Platform\Image\Image;
 use Anomaly\Streams\Platform\Model\Orders\OrdersItemsEntryModel;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
@@ -19,50 +21,15 @@ class ItemModel extends OrdersItemsEntryModel implements ItemInterface
 {
 
     /**
-     * Return the item total.
+     * Get the item image.
      *
-     * @return float
+     * @return Image|null
      */
-    public function total()
+    public function getImage()
     {
         return $this
-            ->getModifiers()
-            ->apply($this->subtotal());
-    }
-
-    /**
-     * Return the item subtotal.
-     *
-     * @return float
-     */
-    public function subtotal()
-    {
-        return $this->getQuantity() * $this->getPrice();
-    }
-
-    /**
-     * Calculate total adjustments.
-     *
-     * @param $type
-     * @return float
-     */
-    public function calculate($type)
-    {
-        $modifiers = $this
-            ->getModifiers()
-            ->type($type);
-
-        return $modifiers->calculate($this->subtotal());
-    }
-
-    /**
-     * Get the related order.
-     *
-     * @return OrderInterface
-     */
-    public function getOrder()
-    {
-        return $this->order;
+            ->getPurchasable()
+            ->getPurchasableImage();
     }
 
     /**
@@ -76,13 +43,33 @@ class ItemModel extends OrdersItemsEntryModel implements ItemInterface
     }
 
     /**
-     * Get the options.
+     * Get the total.
      *
-     * @return array
+     * @return float
      */
-    public function getOptions()
+    public function getTotal()
     {
-        return $this->options;
+        return $this->total;
+    }
+
+    /**
+     * Get the subtotal.
+     *
+     * @return float
+     */
+    public function getSubtotal()
+    {
+        return $this->subtotal;
+    }
+
+    /**
+     * Get the tax.
+     *
+     * @return float
+     */
+    public function getTax()
+    {
+        return $this->tax;
     }
 
     /**
@@ -96,36 +83,13 @@ class ItemModel extends OrdersItemsEntryModel implements ItemInterface
     }
 
     /**
-     * Get the properties.
+     * Get the related order.
      *
-     * @return array
+     * @return OrderInterface
      */
-    public function getProperties()
+    public function getOrder()
     {
-        return $this->properties;
-    }
-
-    /**
-     * Get the properties attribute.
-     *
-     * @return array
-     */
-    public function getPropertiesAttribute()
-    {
-        return json_decode($this->attributes['properties'], true);
-    }
-
-    /**
-     * Set the properties attribute.
-     *
-     * @param array $properties
-     * @return $this
-     */
-    public function setPropertiesAttribute(array $properties)
-    {
-        $this->attributes['properties'] = json_encode($properties);
-
-        return $this;
+        return $this->order;
     }
 
     /**
@@ -147,5 +111,15 @@ class ItemModel extends OrdersItemsEntryModel implements ItemInterface
     {
         return $this->hasMany(ModifierModel::class, 'item_id')
             ->where('target', 'item');
+    }
+
+    /**
+     * Get the related purchasable.
+     *
+     * @return null|PurchasableInterface
+     */
+    public function getPurchasable()
+    {
+        return $this->purchasable;
     }
 }

@@ -25,7 +25,7 @@ class ItemCollection extends EntryCollection
             function ($item) {
 
                 /* @var ItemInterface $item */
-                return $item->total();
+                return $item->getTotal();
             }
         );
     }
@@ -41,23 +41,7 @@ class ItemCollection extends EntryCollection
             function ($item) {
 
                 /* @var ItemInterface $item */
-                return $item->subtotal();
-            }
-        );
-    }
-
-    /**
-     * Return the total calculations.
-     *
-     * @return float
-     */
-    public function adjustments($type)
-    {
-        return $this->sum(
-            function ($item) use ($type) {
-
-                /* @var ItemInterface $item */
-                return $item->calculate($type);
+                return $item->getSubtotal();
             }
         );
     }
@@ -74,6 +58,41 @@ class ItemCollection extends EntryCollection
 
                 /* @var ItemInterface $item */
                 return $item->getQuantity();
+            }
+        );
+    }
+
+    /**
+     * Return the total calculations.
+     *
+     * @return float
+     */
+    public function adjustments($type)
+    {
+        return $this->sum(
+            function ($item) use ($type) {
+
+                /* @var ItemInterface $item */
+                return $item
+                    ->getModifiers()
+                    ->type($type)
+                    ->calculate($type);
+            }
+        );
+    }
+
+    /**
+     * Return the total tax.
+     *
+     * @return float
+     */
+    public function tax()
+    {
+        return $this->sum(
+            function ($item) {
+
+                /* @var ItemInterface $item */
+                return $item->getTax();
             }
         );
     }

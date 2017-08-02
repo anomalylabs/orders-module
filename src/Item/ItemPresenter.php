@@ -19,31 +19,4 @@ class ItemPresenter extends EntryPresenter
      * @var ItemInterface
      */
     protected $object;
-
-    /**
-     * Return a property value.
-     *
-     * @param      $key
-     * @param null $default
-     * @return mixed
-     */
-    public function property($key, $default = null)
-    {
-        return array_get($this->object->getProperties(), $key, $default);
-    }
-
-    /**
-     * Map through properties too.
-     *
-     * @param string $key
-     * @return mixed
-     */
-    public function __get($key)
-    {
-        if (isset($this->object->getProperties()[$key])) {
-            return $this->property($key);
-        }
-
-        return parent::__get($key);
-    }
 }

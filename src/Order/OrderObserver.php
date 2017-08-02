@@ -1,8 +1,12 @@
 <?php namespace Anomaly\OrdersModule\Order;
 
-use Anomaly\OrdersModule\Order\Command\DeleteItems;
-use Anomaly\OrdersModule\Order\Command\DeleteModifiers;
+use Anomaly\OrdersModule\Order\Command\CalculateTotals;
+use Anomaly\OrdersModule\Order\Command\SetCustomer;
+use Anomaly\OrdersModule\Order\Command\SetIpAddress;
+use Anomaly\OrdersModule\Order\Command\SetNumber;
+use Anomaly\OrdersModule\Order\Command\SetStrId;
 use Anomaly\OrdersModule\Order\Contract\OrderInterface;
+use Anomaly\OrdersModule\Order\Event\OrderWasCreated;
 use Anomaly\Streams\Platform\Entry\Contract\EntryInterface;
 use Anomaly\Streams\Platform\Entry\EntryObserver;
 
@@ -24,23 +28,35 @@ class OrderObserver extends EntryObserver
      */
     public function creating(EntryInterface $entry)
     {
-        if (!$entry->getStrId()) {
-            $entry->setAttribute('str_id', str_random());
-        }
+        $this->dispatch(new SetStrId($entry));
+        $this->dispatch(new SetNumber($entry));
+        $this->dispatch(new SetCustomer($entry));
+        $this->dispatch(new SetIpAddress($entry));
 
         parent::creating($entry);
     }
 
     /**
-     * Run after a record has been deleted.
+     * Run after a record is created.
      *
-     * @param OrderInterface|EntryInterface $entry
+     * @param EntryInterface|OrderInterface $entry
      */
-    public function deleted(EntryInterface $entry)
+    public function created(EntryInterface $entry)
     {
-        $this->dispatch(new DeleteItems($entry));
-        $this->dispatch(new DeleteModifiers($entry));
+        $this->events->fire(new OrderWasCreated($entry));
 
-        parent::deleted($entry);
+        parent::created($entry);
+    }
+
+    /**
+     * Fired just before saving the entry.
+     *
+     * @param  EntryInterface|OrderInterface $entry
+     */
+    public function saving(EntryInterface $entry)
+    {
+        $this->dispatch(new CalculateTotals($entry));
+
+        parent::saving($entry);
     }
 }

@@ -7,23 +7,8 @@ return [
     'ip_address'    => [
         'name' => 'IP Address',
     ],
-    'session'       => [
-        'name' => 'Session',
-    ],
     'items'         => [
         'name' => 'Items',
-    ],
-    'status'        => [
-        'name'   => 'Status',
-        'option' => [
-            'pending'    => 'Pending Payment',
-            'processing' => 'Processing',
-            'on_hold'    => 'On Hold',
-            'completed'  => 'Completed',
-            'cancelled'  => 'Cancelled',
-            'refunded'   => 'Refunded',
-            'failed'     => 'Failed',
-        ],
     ],
     'last_modified' => [
         'name' => 'Last Modified',

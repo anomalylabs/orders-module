@@ -1,11 +1,13 @@
 <?php namespace Anomaly\OrdersModule\Order;
 
+use Anomaly\CustomersModule\Address\Contract\AddressInterface;
 use Anomaly\OrdersModule\Item\ItemCollection;
 use Anomaly\OrdersModule\Item\ItemModel;
-use Anomaly\OrdersModule\Modifier\Contract\ModifierInterface;
 use Anomaly\OrdersModule\Modifier\ModifierCollection;
 use Anomaly\OrdersModule\Modifier\ModifierModel;
 use Anomaly\OrdersModule\Order\Contract\OrderInterface;
+use Anomaly\OrdersModule\Shipment\ShipmentCollection;
+use Anomaly\OrdersModule\Shipment\ShipmentModel;
 use Anomaly\Streams\Platform\Model\Orders\OrdersOrdersEntryModel;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
@@ -20,75 +22,23 @@ class OrderModel extends OrdersOrdersEntryModel implements OrderInterface
 {
 
     /**
-     * Return the order total.
+     * The cascading relations.
      *
-     * @return float
+     * @var array
      */
-    public function total()
-    {
-        $items = $this->getItems();
-
-        return $this->adjust($items->total());
-    }
+    protected $cascades = [
+        'items',
+        'modifiers',
+    ];
 
     /**
-     * Return the order subtotal.
+     * Eager loaded relations.
      *
-     * @return float
+     * @var array
      */
-    public function subtotal()
-    {
-        return $this
-            ->getItems()
-            ->subtotal();
-    }
-
-    /**
-     * Return the item quantity.
-     *
-     * @return float
-     */
-    public function quantity()
-    {
-        $items = $this->getItems();
-
-        return $items->quantity();
-    }
-
-    /**
-     * Return the total adjustments.
-     *
-     * @param        $type
-     * @param string $target
-     */
-    public function adjustments($type)
-    {
-        $items = $this->getItems();
-
-        $modifiers = $this
-            ->getModifiers()
-            ->type($type);
-
-        return $items->adjustments($type) + $modifiers->calculate($items->total());
-    }
-
-    /**
-     * Return the total discounts.
-     *
-     * @param $target
-     * @return float
-     */
-    protected function adjust($value)
-    {
-        $modifiers = $this->getModifiers();
-
-        /* @var ModifierInterface $modifier */
-        foreach ($modifiers as $modifier) {
-            $value = $modifier->apply($value);
-        }
-
-        return $value;
-    }
+    protected $with = [
+        //'items', // Causes totaling issues.
+    ];
 
     /**
      * Get the string ID.
@@ -101,6 +51,16 @@ class OrderModel extends OrdersOrdersEntryModel implements OrderInterface
     }
 
     /**
+     * Get the email.
+     *
+     * @return string
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
      * Get the number.
      *
      * @return string
@@ -108,6 +68,66 @@ class OrderModel extends OrdersOrdersEntryModel implements OrderInterface
     public function getNumber()
     {
         return $this->number;
+    }
+
+    /**
+     * Get the first name.
+     *
+     * @return string
+     */
+    public function getFirstName()
+    {
+        return $this->first_name;
+    }
+
+    /**
+     * Get the first name.
+     *
+     * @return string
+     */
+    public function getLastName()
+    {
+        return $this->last_name;
+    }
+
+    /**
+     * Return the tax.
+     *
+     * @return float
+     */
+    public function getTax()
+    {
+        return $this->tax;
+    }
+
+    /**
+     * Return the order total.
+     *
+     * @return float
+     */
+    public function getTotal()
+    {
+        return $this->total;
+    }
+
+    /**
+     * Return the order subtotal.
+     *
+     * @return float
+     */
+    public function getSubtotal()
+    {
+        return $this->subtotal;
+    }
+
+    /**
+     * Return the item quantity.
+     *
+     * @return float
+     */
+    public function getQuantity()
+    {
+        return $this->quantity;
     }
 
     /**
@@ -148,6 +168,46 @@ class OrderModel extends OrdersOrdersEntryModel implements OrderInterface
     public function modifiers()
     {
         return $this->hasMany(ModifierModel::class, 'order_id')
-            ->where('target', 'subtotal');
+            ->where('target', 'order');
+    }
+
+    /**
+     * Get the billing address.
+     *
+     * @return AddressInterface
+     */
+    public function getBillingAddress()
+    {
+        return $this->billing_address;
+    }
+
+    /**
+     * Get the shipping address.
+     *
+     * @return AddressInterface
+     */
+    public function getShippingAddress()
+    {
+        return $this->billing_address;
+    }
+
+    /**
+     * Get the shipments.
+     *
+     * @return ShipmentCollection
+     */
+    public function getShipments()
+    {
+        return $this->shipments;
+    }
+
+    /**
+     * Return the shipments relation.
+     *
+     * @return HasMany
+     */
+    public function shipments()
+    {
+        return $this->hasMany(ShipmentModel::class, 'order_id');
     }
 }

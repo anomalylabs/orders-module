@@ -1,8 +1,8 @@
 <?php namespace Anomaly\OrdersModule\Order\Command;
 
-use Anomaly\OrdersModule\Order\Contract\OrderInterface;
 use Anomaly\OrdersModule\Modifier\Contract\ModifierInterface;
 use Anomaly\OrdersModule\Modifier\Contract\ModifierRepositoryInterface;
+use Anomaly\OrdersModule\Order\Contract\OrderInterface;
 use Anomaly\Streams\Platform\Model\EloquentModel;
 
 /**

@@ -1,7 +1,9 @@
 <?php namespace Anomaly\OrdersModule\Order\Contract;
 
+use Anomaly\CustomersModule\Address\Contract\AddressInterface;
 use Anomaly\OrdersModule\Item\ItemCollection;
 use Anomaly\OrdersModule\Modifier\ModifierCollection;
+use Anomaly\OrdersModule\Shipment\ShipmentCollection;
 use Anomaly\Streams\Platform\Entry\Contract\EntryInterface;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
@@ -17,35 +19,6 @@ interface OrderInterface extends EntryInterface
 {
 
     /**
-     * Return the order total.
-     *
-     * @return float
-     */
-    public function total();
-
-    /**
-     * Return the order subtotal.
-     *
-     * @return float
-     */
-    public function subtotal();
-
-    /**
-     * Return the item quantity.
-     *
-     * @return float
-     */
-    public function quantity();
-
-    /**
-     * Return the total adjustments.
-     *
-     * @param $type
-     * @param string $target
-     */
-    public function adjustments($type);
-
-    /**
      * Get the string ID.
      *
      * @return string
@@ -58,6 +31,55 @@ interface OrderInterface extends EntryInterface
      * @return string
      */
     public function getNumber();
+
+    /**
+     * Get the email.
+     *
+     * @return string
+     */
+    public function getEmail();
+
+    /**
+     * Get the first name.
+     *
+     * @return string
+     */
+    public function getFirstName();
+
+    /**
+     * Get the first name.
+     *
+     * @return string
+     */
+    public function getLastName();
+
+    /**
+     * Return the tax.
+     *
+     * @return float
+     */
+    public function getTax();
+
+    /**
+     * Return the order total.
+     *
+     * @return float
+     */
+    public function getTotal();
+
+    /**
+     * Return the order subtotal.
+     *
+     * @return float
+     */
+    public function getSubtotal();
+
+    /**
+     * Return the item quantity.
+     *
+     * @return float
+     */
+    public function getQuantity();
 
     /**
      * Get related items.
@@ -86,4 +108,32 @@ interface OrderInterface extends EntryInterface
      * @return HasMany
      */
     public function modifiers();
+
+    /**
+     * Get the billing address.
+     *
+     * @return AddressInterface
+     */
+    public function getBillingAddress();
+
+    /**
+     * Get the shipping address.
+     *
+     * @return AddressInterface
+     */
+    public function getShippingAddress();
+
+    /**
+     * Get the shipments.
+     *
+     * @return ShipmentCollection
+     */
+    public function getShipments();
+
+    /**
+     * Return the shipments relation.
+     *
+     * @return HasMany
+     */
+    public function shipments();
 }

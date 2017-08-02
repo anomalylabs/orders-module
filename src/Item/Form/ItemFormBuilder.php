@@ -11,4 +11,5 @@ use Anomaly\Streams\Platform\Ui\Form\FormBuilder;
  */
 class ItemFormBuilder extends FormBuilder
 {
+
 }

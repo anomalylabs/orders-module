@@ -13,6 +13,15 @@ class OrdersModule extends Module
 {
 
     /**
+     * The addon icon.
+     *
+     * @var string
+     */
+    protected $icon = 'glyphicons glyphicons-invoice';
+
+    //protected $icon = 'fa fa-usd';
+
+    /**
      * The module sections.
      *
      * @var array
@@ -21,6 +30,16 @@ class OrdersModule extends Module
         'orders' => [
             'buttons' => [
                 'new_order',
+            ],
+        ],
+        'payments' => [
+            'buttons' => [
+                'new_payment',
+            ],
+        ],
+        'shipments' => [
+            'buttons' => [
+                'new_shipment',
             ],
         ],
     ];

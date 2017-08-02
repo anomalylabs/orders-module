@@ -40,12 +40,11 @@ class AnomalyModuleOrdersCreateModifiersStream extends Migration
         'value'  => [
             'required' => true,
         ],
-        'order'   => [
+        'order'  => [
             'required' => true,
         ],
         'item',
-        'origin',
-        'properties',
+        'source',
     ];
 
 }

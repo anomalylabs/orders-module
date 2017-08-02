@@ -1,8 +1,8 @@
 <?php namespace Anomaly\OrdersModule\Http\Controller;
 
+use Anomaly\OrdersModule\Item\Contract\ItemRepositoryInterface;
 use Anomaly\OrdersModule\Order\Command\GetOrder;
 use Anomaly\OrdersModule\Order\Contract\OrderInterface;
-use Anomaly\OrdersModule\Item\Contract\ItemRepositoryInterface;
 use Anomaly\Streams\Platform\Http\Controller\PublicController;
 
 /**

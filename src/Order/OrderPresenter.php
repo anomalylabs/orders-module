@@ -2,7 +2,6 @@
 
 use Anomaly\OrdersModule\Order\Contract\OrderInterface;
 use Anomaly\Streams\Platform\Entry\EntryPresenter;
-use Illuminate\Session\Store;
 
 /**
  * Class OrderPresenter
@@ -21,26 +20,6 @@ class OrderPresenter extends EntryPresenter
      * @var OrderInterface
      */
     protected $object;
-
-    /**
-     * Return the status of the order.
-     *
-     * @return string
-     */
-    public function status()
-    {
-        $date = $this->object->lastModified();
-
-        if ($date->diffInMinutes() < 15) {
-            return 'active';
-        }
-
-        if ($date->diffInMinutes() < 60) {
-            return 'stale';
-        }
-
-        return 'abandoned';
-    }
 
     /**
      * Return the status label.
@@ -69,5 +48,25 @@ class OrderPresenter extends EntryPresenter
         }
 
         return parent::label($text, $context, $size);
+    }
+
+    /**
+     * Return the status of the order.
+     *
+     * @return string
+     */
+    public function status()
+    {
+        $date = $this->object->lastModified();
+
+        if ($date->diffInMinutes() < 15) {
+            return 'active';
+        }
+
+        if ($date->diffInMinutes() < 60) {
+            return 'stale';
+        }
+
+        return 'abandoned';
     }
 }

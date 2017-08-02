@@ -16,14 +16,14 @@ use Illuminate\Session\Store;
  */
 class GetOrder
 {
-    
+
     /**
      * Handle the command.
      *
      * @param OrderRepositoryInterface $orders
-     * @param Store                   $session
-     * @param Request                 $request
-     * @param Guard                   $auth
+     * @param Store $session
+     * @param Request $request
+     * @param Guard $auth
      * @return OrderInterface
      */
     public function handle(OrderRepositoryInterface $orders, Store $session, Request $request, Guard $auth)
@@ -39,7 +39,7 @@ class GetOrder
         }
 
         /* @var OrderInterface $order */
-        $session->set('anomaly.module.orders::order', $order->getStrId());
+        $session->put('anomaly.module.orders::order', $order->getStrId());
 
         return $order;
     }
