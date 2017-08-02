@@ -50,11 +50,39 @@ class AnomalyModuleOrdersCreateOrdersStream extends Migration
         ],
         'tags',
         'customer',
-        'billing_address',
-        'shipping_address',
-        'checkout_state',
-        'payment_state',
-        'shipping_state',
+        'checkout_status',
+        'payment_status',
+        'shipping_status',
         'quantity',
+
+        'first_name' => [
+            'required' => true,
+        ],
+        'last_name',
+        'email'      => [
+            'required' => true,
+            'unique'   => true,
+        ],
+
+        'tax_number',
+        'company',
+        'groups',
+        'phone',
+        'notes',
+
+        'billing_street_address',
+        'billing_city',
+        'billing_postal_code',
+        'billing_country',
+        'billing_state',
+
+        'shipping_first_name',
+        'shipping_last_name',
+        'shipping_company',
+        'shipping_street_address',
+        'shipping_city',
+        'shipping_postal_code',
+        'shipping_country',
+        'shipping_state',
     ];
 }

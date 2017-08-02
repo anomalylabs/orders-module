@@ -43,6 +43,6 @@ class AnomalyModuleOrdersCreateItemsStream extends Migration
         'total',
         'tax',
         'description',
-        'purchasable',
+        'entry',
     ];
 }

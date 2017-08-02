@@ -1,11 +1,10 @@
 <?php namespace Anomaly\OrdersModule\Modifier;
 
+use Anomaly\OrdersModule\Order\Contract\OrderInterface;
 use Anomaly\OrdersModule\Item\Contract\ItemInterface;
 use Anomaly\OrdersModule\Modifier\Command\ApplyModifier;
 use Anomaly\OrdersModule\Modifier\Command\CalculateValue;
 use Anomaly\OrdersModule\Modifier\Contract\ModifierInterface;
-use Anomaly\OrdersModule\Order\Contract\OrderInterface;
-use Anomaly\Streams\Platform\Entry\Contract\EntryInterface;
 use Anomaly\Streams\Platform\Model\Orders\OrdersModifiersEntryModel;
 
 /**
@@ -49,16 +48,6 @@ class ModifierModel extends OrdersModifiersEntryModel implements ModifierInterfa
     public function isAddition()
     {
         return (new ModifierValue())->isAddition($this->getValue());
-    }
-
-    /**
-     * Get the value.
-     *
-     * @return string
-     */
-    public function getValue()
-    {
-        return $this->value;
     }
 
     /**
@@ -133,45 +122,12 @@ class ModifierModel extends OrdersModifiersEntryModel implements ModifierInterfa
     }
 
     /**
-     * Get the properties.
+     * Get the value.
      *
-     * @return array
+     * @return string
      */
-    public function getProperties()
+    public function getValue()
     {
-        return $this->properties;
-    }
-
-    /**
-     * Get the properties attribute.
-     *
-     * @return array
-     */
-    public function getPropertiesAttribute()
-    {
-        return json_decode($this->attributes['properties'], true);
-    }
-
-    /**
-     * Set the properties attribute.
-     *
-     * @param array $properties
-     * @return $this
-     */
-    public function setPropertiesAttribute(array $properties)
-    {
-        $this->attributes['properties'] = json_encode($properties);
-
-        return $this;
-    }
-
-    /**
-     * Get the source.
-     *
-     * @return null|EntryInterface
-     */
-    public function getSource()
-    {
-        return $this->source;
+        return $this->value;
     }
 }

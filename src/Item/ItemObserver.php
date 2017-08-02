@@ -1,11 +1,13 @@
 <?php namespace Anomaly\OrdersModule\Item;
 
-use Anomaly\OrdersModule\Item\Command\CalculateTotals;
-use Anomaly\OrdersModule\Item\Command\ProcessTaxes;
-use Anomaly\OrdersModule\Item\Command\UpdateOrderTotals;
+use Anomaly\OrdersModule\Order\Command\ProcessOrder;
+use Anomaly\OrdersModule\Order\Command\TotalOrder;
+use Anomaly\OrdersModule\Order\Contract\OrderInterface;
+use Anomaly\OrdersModule\Item\Command\TotalItem;
 use Anomaly\OrdersModule\Item\Contract\ItemInterface;
 use Anomaly\Streams\Platform\Entry\Contract\EntryInterface;
 use Anomaly\Streams\Platform\Entry\EntryObserver;
+use Anomaly\Streams\Platform\Model\EloquentModel;
 
 /**
  * Class ItemObserver
@@ -18,38 +20,52 @@ class ItemObserver extends EntryObserver
 {
 
     /**
-     * Fired just before saving the entry.
+     * Before saving an entry touch the
+     * meta information.
      *
      * @param  EntryInterface|ItemInterface $entry
      */
     public function saving(EntryInterface $entry)
     {
-        $this->dispatch(new CalculateTotals($entry));
+        $this->dispatch(new TotalItem($entry));
 
         parent::saving($entry);
     }
 
     /**
-     * Fired just after saving the entry.
+     * Run after saving a record.
      *
-     * @param  EntryInterface|ItemInterface $entry
+     * @param EntryInterface|ItemInterface $entry
      */
     public function saved(EntryInterface $entry)
     {
-        $this->dispatch(new UpdateOrderTotals($entry));
+        /* @var OrderInterface|EloquentModel $order */
+        $order = $entry->getOrder();
+
+        $order->load('items');
+
+        $this->dispatch(new ProcessOrder($order));
+        $this->dispatch(new TotalOrder($order));
+
+        $order->save();
 
         parent::saved($entry);
     }
 
     /**
-     * Fired just after saving the entry.
+     * Run after a record has been deleted.
      *
-     * @param  EntryInterface|ItemInterface $entry
+     * @param EntryInterface|ItemInterface $entry
      */
     public function deleted(EntryInterface $entry)
     {
-        $this->dispatch(new UpdateOrderTotals($entry));
+        /* @var OrderInterface|EloquentModel $order */
+        $order = $entry->getOrder();
 
-        parent::saved($entry);
+        $this->dispatch(new ProcessOrder($order));
+        $this->dispatch(new TotalOrder($order));
+
+        $order->save();
     }
+
 }

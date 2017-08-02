@@ -1,27 +1,27 @@
 <?php namespace Anomaly\OrdersModule\Item\Command;
 
 use Anomaly\OrdersModule\Item\Contract\ItemInterface;
-use Anomaly\OrdersModule\Order\Contract\OrderRepositoryInterface;
+use Anomaly\OrdersModule\Item\ItemProcessor;
 
 /**
- * Class UpdateOrderTotals
+ * Class ProcessItem
  *
  * @link   http://pyrocms.com/
  * @author PyroCMS, Inc. <support@pyrocms.com>
  * @author Ryan Thompson <ryan@pyrocms.com>
  */
-class UpdateOrderTotals
+class ProcessItem
 {
 
     /**
-     * The order instance.
+     * The item instance.
      *
      * @var ItemInterface
      */
     protected $item;
 
     /**
-     * Create a new UpdateOrderTotals instance.
+     * Create a new ProcessItem instance.
      *
      * @param ItemInterface $item
      */
@@ -33,10 +33,10 @@ class UpdateOrderTotals
     /**
      * Handle the command.
      *
-     * @param OrderRepositoryInterface $orders
+     * @param ItemProcessor $processor
      */
-    public function handle(OrderRepositoryInterface $orders)
+    public function handle(ItemProcessor $processor)
     {
-        $orders->save($this->item->getOrder());
+        $processor->process($this->item);
     }
 }

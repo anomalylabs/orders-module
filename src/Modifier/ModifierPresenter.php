@@ -21,6 +21,18 @@ class ModifierPresenter extends EntryPresenter
     protected $object;
 
     /**
+     * Return a property value.
+     *
+     * @param      $key
+     * @param null $default
+     * @return mixed
+     */
+    public function property($key, $default = null)
+    {
+        return array_get($this->object->getProperties(), $key, $default);
+    }
+
+    /**
      * Map through properties too.
      *
      * @param string $key
@@ -33,17 +45,5 @@ class ModifierPresenter extends EntryPresenter
         }
 
         return parent::__get($key);
-    }
-
-    /**
-     * Return a property value.
-     *
-     * @param      $key
-     * @param null $default
-     * @return mixed
-     */
-    public function property($key, $default = null)
-    {
-        return array_get($this->object->getProperties(), $key, $default);
     }
 }

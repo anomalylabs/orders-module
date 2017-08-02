@@ -1,8 +1,7 @@
 <?php namespace Anomaly\OrdersModule\Item\Contract;
 
-use Anomaly\OrdersModule\Modifier\ModifierCollection;
 use Anomaly\OrdersModule\Order\Contract\OrderInterface;
-use Anomaly\StoreModule\Contract\PurchasableInterface;
+use Anomaly\OrdersModule\Modifier\ModifierCollection;
 use Anomaly\Streams\Platform\Entry\Contract\EntryInterface;
 use Anomaly\Streams\Platform\Image\Image;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -19,11 +18,11 @@ interface ItemInterface extends EntryInterface
 {
 
     /**
-     * Get the item image.
+     * Get the tax.
      *
-     * @return Image|null
+     * @return float
      */
-    public function getImage();
+    public function getTax();
 
     /**
      * Get the price.
@@ -47,32 +46,69 @@ interface ItemInterface extends EntryInterface
     public function getSubtotal();
 
     /**
-     * Get the tax.
+     * Get the shipping.
      *
      * @return float
      */
-    public function getTax();
+    public function getShipping();
 
     /**
-     * Get the quantity.
+     * Get the discounts.
      *
-     * @return int
+     * @return float
+     */
+    public function getDiscounts();
+
+    /**
+     * Get the item quantity.
+     *
+     * @return float
      */
     public function getQuantity();
 
+
     /**
-     * Get the related order.
+     * Calculate total adjustments.
+     *
+     * @param $type
+     * @return float
+     */
+    public function calculate($type);
+
+    /**
+     * Get the image.
+     *
+     * @return null|Image
+     */
+    public function getImage();
+
+    /**
+     * Get the entry.
+     *
+     * @return EntryInterface
+     */
+    public function getEntry();
+
+    /**
+     * Get the options.
+     *
+     * @return array
+     */
+    public function getOptions();
+
+    /**
+     * Get the order.
      *
      * @return OrderInterface
      */
     public function getOrder();
 
     /**
-     * Get the related purchasable.
+     * Get the order ID.
      *
-     * @return null|PurchasableInterface
+     * @return int
      */
-    public function getPurchasable();
+    public function getOrderId();
 
     /**
      * Get related modifiers.

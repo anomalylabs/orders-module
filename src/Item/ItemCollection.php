@@ -15,6 +15,22 @@ class ItemCollection extends EntryCollection
 {
 
     /**
+     * Return the tax.
+     *
+     * @return float
+     */
+    public function tax()
+    {
+        return $this->sum(
+            function ($item) {
+
+                /* @var ItemInterface $item */
+                return $item->getTax();
+            }
+        );
+    }
+
+    /**
      * Return the total.
      *
      * @return float
@@ -63,6 +79,38 @@ class ItemCollection extends EntryCollection
     }
 
     /**
+     * Return the total discounts.
+     *
+     * @return float
+     */
+    public function discounts()
+    {
+        return $this->sum(
+            function ($item) {
+
+                /* @var ItemInterface $item */
+                return $item->getDiscounts();
+            }
+        );
+    }
+
+    /**
+     * Return the total shipping.
+     *
+     * @return float
+     */
+    public function shipping()
+    {
+        return $this->sum(
+            function ($item) {
+
+                /* @var ItemInterface $item */
+                return $item->getShipping();
+            }
+        );
+    }
+
+    /**
      * Return the total calculations.
      *
      * @return float
@@ -73,26 +121,7 @@ class ItemCollection extends EntryCollection
             function ($item) use ($type) {
 
                 /* @var ItemInterface $item */
-                return $item
-                    ->getModifiers()
-                    ->type($type)
-                    ->calculate($type);
-            }
-        );
-    }
-
-    /**
-     * Return the total tax.
-     *
-     * @return float
-     */
-    public function tax()
-    {
-        return $this->sum(
-            function ($item) {
-
-                /* @var ItemInterface $item */
-                return $item->getTax();
+                return $item->calculate($type);
             }
         );
     }

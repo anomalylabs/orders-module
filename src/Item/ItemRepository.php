@@ -3,13 +3,6 @@
 use Anomaly\OrdersModule\Item\Contract\ItemRepositoryInterface;
 use Anomaly\Streams\Platform\Entry\EntryRepository;
 
-/**
- * Class ItemRepository
- *
- * @link   http://pyrocms.com/
- * @author PyroCMS, Inc. <support@pyrocms.com>
- * @author Ryan Thompson <ryan@pyrocms.com>
- */
 class ItemRepository extends EntryRepository implements ItemRepositoryInterface
 {
 
