@@ -1,13 +1,14 @@
 <?php namespace Anomaly\OrdersModule\Order;
 
-use Anomaly\CustomersModule\Address\Contract\AddressInterface;
 use Anomaly\OrdersModule\Item\ItemCollection;
 use Anomaly\OrdersModule\Item\ItemModel;
 use Anomaly\OrdersModule\Modifier\ModifierCollection;
 use Anomaly\OrdersModule\Modifier\ModifierModel;
+use Anomaly\OrdersModule\Order\Billing\BillingAddress;
 use Anomaly\OrdersModule\Order\Contract\OrderInterface;
 use Anomaly\OrdersModule\Shipment\ShipmentCollection;
 use Anomaly\OrdersModule\Shipment\ShipmentModel;
+use Anomaly\StoreModule\Contract\AddressInterface;
 use Anomaly\Streams\Platform\Model\Orders\OrdersOrdersEntryModel;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
@@ -20,6 +21,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  */
 class OrderModel extends OrdersOrdersEntryModel implements OrderInterface
 {
+
+    use BillingAddress;
 
     /**
      * The cascading relations.
@@ -37,7 +40,7 @@ class OrderModel extends OrdersOrdersEntryModel implements OrderInterface
      * @var array
      */
     protected $with = [
-        //'items', // Causes totaling issues.
+        //'items',
     ];
 
     /**
@@ -169,26 +172,6 @@ class OrderModel extends OrdersOrdersEntryModel implements OrderInterface
     {
         return $this->hasMany(ModifierModel::class, 'order_id')
             ->where('target', 'order');
-    }
-
-    /**
-     * Get the billing address.
-     *
-     * @return AddressInterface
-     */
-    public function getBillingAddress()
-    {
-        return $this->billing_address;
-    }
-
-    /**
-     * Get the shipping address.
-     *
-     * @return AddressInterface
-     */
-    public function getShippingAddress()
-    {
-        return $this->billing_address;
     }
 
     /**

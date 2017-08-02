@@ -1,9 +1,9 @@
 <?php namespace Anomaly\OrdersModule\Order\Contract;
 
-use Anomaly\CustomersModule\Address\Contract\AddressInterface;
 use Anomaly\OrdersModule\Item\ItemCollection;
 use Anomaly\OrdersModule\Modifier\ModifierCollection;
 use Anomaly\OrdersModule\Shipment\ShipmentCollection;
+use Anomaly\StoreModule\Contract\AddressInterface;
 use Anomaly\Streams\Platform\Entry\Contract\EntryInterface;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
@@ -110,20 +110,6 @@ interface OrderInterface extends EntryInterface
     public function modifiers();
 
     /**
-     * Get the billing address.
-     *
-     * @return AddressInterface
-     */
-    public function getBillingAddress();
-
-    /**
-     * Get the shipping address.
-     *
-     * @return AddressInterface
-     */
-    public function getShippingAddress();
-
-    /**
      * Get the shipments.
      *
      * @return ShipmentCollection
@@ -136,4 +122,111 @@ interface OrderInterface extends EntryInterface
      * @return HasMany
      */
     public function shipments();
+
+    /**
+     * Get the billing address.
+     *
+     * @return AddressInterface
+     */
+    public function getBillingAddress();
+
+    /**
+     * Get the billing_street_address
+     *
+     * @return string
+     */
+
+    public function getBillingStreetAddress();
+
+    /**
+     * Get the billing_city
+     *
+     * @return string
+     */
+    public function getBillingCity();
+
+    /**
+     * Get the billing_postal_code
+     *
+     * @return string
+     */
+    public function getBillingPostalCode();
+
+    /**
+     * Get the billing_country
+     *
+     * @return string
+     */
+    public function getBillingCountry();
+
+    /**
+     * Get the billing_state
+     *
+     * @return string
+     */
+    public function getBillingState();
+
+    /**
+     * Get the shipping address.
+     *
+     * @return AddressInterface
+     */
+    public function getShippingAddress();
+
+    /**
+     * Get the shipping_first_name
+     *
+     * @return string
+     */
+
+    public function getShippingFirstName();
+
+    /**
+     * Get the shipping_last_name
+     *
+     * @return string
+     */
+    public function getShippingLastName();
+
+    /**
+     * Get the shipping_company
+     *
+     * @return string
+     */
+    public function getShippingCompany();
+
+    /**
+     * Get the shipping_street_address
+     *
+     * @return string
+     */
+    public function getShippingStreetAddress();
+
+    /**
+     * Get the shipping_city
+     *
+     * @return string
+     */
+    public function getShippingCity();
+
+    /**
+     * Get the shipping_postal_code
+     *
+     * @return string
+     */
+    public function getShippingPostalCode();
+
+    /**
+     * Get the shipping_country
+     *
+     * @return string
+     */
+    public function getShippingCountry();
+
+    /**
+     * Get the shipping_state
+     *
+     * @return string
+     */
+    public function getShippingState();
 }
