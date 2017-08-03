@@ -39,8 +39,8 @@ class TotalOrder
         $this->order->setAttribute('quantity', $items->quantity());
         $this->order->setAttribute('subtotal', $items->subtotal());
         $this->order->setAttribute('tax', $items->tax() + $this->order->calculate('tax'));
-        $this->order->setAttribute('shipping', $items->shipping() - $this->order->calculate('shipping'));
-        $this->order->setAttribute('discounts', $items->discounts() - $this->order->calculate('discount'));
+        $this->order->setAttribute('shipping', $items->shipping() + $this->order->calculate('shipping'));
+        $this->order->setAttribute('discounts', $items->discounts() + $this->order->calculate('discount'));
 
         $this->order->setAttribute(
             'total',
