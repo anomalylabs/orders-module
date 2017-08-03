@@ -1,8 +1,8 @@
 <?php namespace Anomaly\OrdersModule\Order;
 
-use Anomaly\OrdersModule\Order\Command\CalculateTotals;
 use Anomaly\OrdersModule\Order\Command\SetIpAddress;
 use Anomaly\OrdersModule\Order\Command\SetStrId;
+use Anomaly\OrdersModule\Order\Command\TotalOrder;
 use Anomaly\OrdersModule\Order\Contract\OrderInterface;
 use Anomaly\OrdersModule\Order\Event\OrderWasCreated;
 use Anomaly\Streams\Platform\Entry\Contract\EntryInterface;
@@ -51,7 +51,7 @@ class OrderObserver extends EntryObserver
      */
     public function saving(EntryInterface $entry)
     {
-        $this->dispatch(new CalculateTotals($entry));
+        $this->dispatch(new TotalOrder($entry));
 
         parent::saving($entry);
     }

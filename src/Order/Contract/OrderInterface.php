@@ -82,6 +82,20 @@ interface OrderInterface extends EntryInterface
     public function getSubtotal();
 
     /**
+     * Get the shipping.
+     *
+     * @return float
+     */
+    public function getShipping();
+
+    /**
+     * Get the discounts.
+     *
+     * @return float
+     */
+    public function getDiscounts();
+
+    /**
      * Return the item quantity.
      *
      * @return float
@@ -236,4 +250,21 @@ interface OrderInterface extends EntryInterface
      * @return string
      */
     public function getShippingState();
+
+    /**
+     * Return the total adjustments.
+     *
+     * @param        $type
+     * @param string $target
+     */
+    public function adjustments($type);
+
+    /**
+     * Calculate total adjustments.
+     *
+     * @param $type
+     * @return float
+     */
+    public function calculate($type);
+
 }

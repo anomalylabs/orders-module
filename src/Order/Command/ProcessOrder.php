@@ -1,16 +1,16 @@
 <?php namespace Anomaly\OrdersModule\Order\Command;
 
 use Anomaly\OrdersModule\Order\Contract\OrderInterface;
-use Anomaly\OrdersModule\Order\OrderCalculator;
+use Anomaly\OrdersModule\Order\OrderProcessor;
 
 /**
- * Class CalculateTotals
+ * Class ProcessOrder
  *
  * @link   http://pyrocms.com/
  * @author PyroCMS, Inc. <support@pyrocms.com>
  * @author Ryan Thompson <ryan@pyrocms.com>
  */
-class CalculateTotals
+class ProcessOrder
 {
 
     /**
@@ -21,7 +21,7 @@ class CalculateTotals
     protected $order;
 
     /**
-     * Create a new CalculateTotals instance.
+     * Create a new ProcessOrder instance.
      *
      * @param OrderInterface $order
      */
@@ -33,10 +33,10 @@ class CalculateTotals
     /**
      * Handle the command.
      *
-     * @param OrderCalculator $calculator
+     * @param OrderProcessor $processor
      */
-    public function handle(OrderCalculator $calculator)
+    public function handle(OrderProcessor $processor)
     {
-        $calculator->process($this->order);
+        $processor->process($this->order);
     }
 }

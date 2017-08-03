@@ -8,6 +8,7 @@ use Anomaly\OrdersModule\Modifier\ModifierModel;
 use Anomaly\OrdersModule\Modifier\ModifierRepository;
 use Anomaly\OrdersModule\Order\Contract\OrderRepositoryInterface;
 use Anomaly\OrdersModule\Order\OrderModel;
+use Anomaly\OrdersModule\Order\OrderProcessor;
 use Anomaly\OrdersModule\Order\OrderRepository;
 use Anomaly\OrdersModule\Payment\Contract\PaymentRepositoryInterface;
 use Anomaly\OrdersModule\Payment\PaymentModel;
@@ -21,6 +22,7 @@ use Anomaly\Streams\Platform\Model\Orders\OrdersModifiersEntryModel;
 use Anomaly\Streams\Platform\Model\Orders\OrdersOrdersEntryModel;
 use Anomaly\Streams\Platform\Model\Orders\OrdersPaymentsEntryModel;
 use Anomaly\Streams\Platform\Model\Orders\OrdersShipmentsEntryModel;
+use Illuminate\Contracts\Config\Repository;
 
 /**
  * Class OrdersModuleServiceProvider
@@ -105,5 +107,16 @@ class OrdersModuleServiceProvider extends AddonServiceProvider
         'admin/orders/payments/create'     => 'Anomaly\OrdersModule\Http\Controller\Admin\PaymentsController@create',
         'admin/orders/payments/edit/{id}'  => 'Anomaly\OrdersModule\Http\Controller\Admin\PaymentsController@edit',
     ];
+
+    /**
+     * Register the addon.
+     *
+     * @param OrderProcessor $orders
+     * @param Repository $config
+     */
+    public function register(OrderProcessor $orders, Repository $config)
+    {
+        $orders->setProcessors($config->get($this->addon->getNamespace('processors.orders'), []));
+    }
 
 }

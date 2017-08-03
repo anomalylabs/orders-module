@@ -135,6 +135,26 @@ class OrderModel extends OrdersOrdersEntryModel implements OrderInterface
     }
 
     /**
+     * Get the shipping.
+     *
+     * @return float
+     */
+    public function getShipping()
+    {
+        return $this->shipping;
+    }
+
+    /**
+     * Get the discounts.
+     *
+     * @return float
+     */
+    public function getDiscounts()
+    {
+        return $this->discounts;
+    }
+
+    /**
      * Return the item quantity.
      *
      * @return float
@@ -182,7 +202,7 @@ class OrderModel extends OrdersOrdersEntryModel implements OrderInterface
     public function modifiers()
     {
         return $this->hasMany(ModifierModel::class, 'order_id')
-            ->where('target', 'order');
+            ->whereNull('item_id');
     }
 
     /**
@@ -203,5 +223,37 @@ class OrderModel extends OrdersOrdersEntryModel implements OrderInterface
     public function shipments()
     {
         return $this->hasMany(ShipmentModel::class, 'order_id');
+    }
+
+    /**
+     * Return the total adjustments.
+     *
+     * @param        $type
+     * @param string $target
+     */
+    public function adjustments($type)
+    {
+        $items = $this->getItems();
+
+        $modifiers = $this
+            ->getModifiers()
+            ->type($type);
+
+        return $items->adjustments($type) + $modifiers->calculate($items->total());
+    }
+
+    /**
+     * Calculate total adjustments.
+     *
+     * @param $type
+     * @return float
+     */
+    public function calculate($type)
+    {
+        $modifiers = $this
+            ->getModifiers()
+            ->type($type);
+
+        return $modifiers->calculate($this->getSubtotal());
     }
 }

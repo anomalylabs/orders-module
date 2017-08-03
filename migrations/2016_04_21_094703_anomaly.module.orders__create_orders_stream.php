@@ -43,6 +43,7 @@ class AnomalyModuleOrdersCreateOrdersStream extends Migration
         'total',
         'subtotal',
         'discounts',
+        'shipping',
         'tax',
         'date',
         'number'     => [

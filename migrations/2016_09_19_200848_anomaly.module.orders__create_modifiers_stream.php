@@ -28,23 +28,20 @@ class AnomalyModuleOrdersCreateModifiersStream extends Migration
      * @var array
      */
     protected $assignments = [
-        'name'   => [
+        'name'  => [
             'required' => true,
         ],
-        'type'   => [
+        'type'  => [
             'required' => true,
         ],
-        'target' => [
+        'value' => [
             'required' => true,
         ],
-        'value'  => [
-            'required' => true,
-        ],
-        'order'  => [
+        'order' => [
             'required' => true,
         ],
         'item',
-        'source',
+        'entry',
     ];
 
 }
