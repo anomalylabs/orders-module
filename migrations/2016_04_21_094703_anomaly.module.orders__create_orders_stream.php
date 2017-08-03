@@ -55,14 +55,9 @@ class AnomalyModuleOrdersCreateOrdersStream extends Migration
         'shipping_status',
         'quantity',
 
-        'first_name' => [
-            'required' => true,
-        ],
+        'first_name',
         'last_name',
-        'email'      => [
-            'required' => true,
-            'unique'   => true,
-        ],
+        'email',
 
         'tax_number',
         'company',
