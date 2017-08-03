@@ -1,98 +1,130 @@
 <?php
 
 return [
-    'user'          => [
+    'user'                    => [
         'name' => 'User',
     ],
-    'ip_address'    => [
+    'ip_address'              => [
         'name' => 'IP Address',
     ],
-    'items'         => [
+    'items'                   => [
         'name' => 'Items',
     ],
-    'last_modified' => [
+    'last_modified'           => [
         'name' => 'Last Modified',
     ],
-    'number'        => [
+    'number'                  => [
         'name' => 'Number',
     ],
-    'total'         => [
+    'total'                   => [
         'name' => 'Total',
     ],
-    'tags'          => [
+    'tags'                    => [
         'name' => 'Tags',
     ],
-    'date'          => [
+    'date'                    => [
         'name' => 'Date',
     ],
-    'currency'      => [
+    'currency'                => [
         'name' => 'Currency',
     ],
-    'subtotal'      => [
+    'subtotal'                => [
         'name' => 'Subtotal',
     ],
-    'discounts'     => [
+    'discounts'               => [
         'name' => 'Discounts',
     ],
-    'tax'           => [
+    'tax'                     => [
         'name' => 'Tax',
     ],
-    'customer'      => [
+    'customer'                => [
         'name' => 'Customer',
     ],
-    'first_name'    => [
+    'shipping_first_name'     => [
         'name'         => 'First Name',
         'instructions' => 'Specify the customers first name.',
     ],
-    'last_name'     => [
+    'shipping_last_name'      => [
         'name'         => 'Last Name',
         'instructions' => 'Specify the customers last name.',
     ],
-    'slug'          => [
+    'billing_first_name'      => [
+        'name'         => 'First Name',
+        'instructions' => 'Specify the customers first name.',
+    ],
+    'billing_last_name'       => [
+        'name'         => 'Last Name',
+        'instructions' => 'Specify the customers last name.',
+    ],
+    'slug'                    => [
         'name'         => 'Slug',
         'instructions' => 'The slug can be used when referring to this group via API.',
     ],
-    'description'   => [
+    'description'             => [
         'name'         => 'Description',
         'instructions' => 'Briefly describe this customer group.',
     ],
-    'email'         => [
+    'email'                   => [
         'name'         => 'Email',
         'instructions' => 'Specify the customers primary email.',
     ],
-    'company'       => [
+    'company'                 => [
         'name'         => 'Company',
         'instructions' => [
             'customers' => 'Specify the customers company name.',
         ],
     ],
-    'phone'         => [
+    'phone'                   => [
         'name'         => 'Phone',
         'instructions' => [
             'customers' => 'Specify the customers primary email.',
         ],
     ],
-    'address1'      => [
+    'shipping_street_address' => [
         'name'         => 'Address 1',
         'instructions' => 'Specify the street address.',
     ],
-    'address2'      => [
+    'billing_street_address'  => [
+        'name'         => 'Address 1',
+        'instructions' => 'Specify the street address.',
+    ],
+    'shipping_address2'       => [
         'name'         => 'Address 2',
         'instructions' => 'Specify the address apt., suite, etc.',
     ],
-    'city'          => [
+    'billing_address2'        => [
+        'name'         => 'Address 2',
+        'instructions' => 'Specify the address apt., suite, etc.',
+    ],
+    'shipping_city'           => [
         'name'         => 'City',
         'instructions' => 'Specify the city for this address.',
     ],
-    'state'         => [
+    'billing_city'            => [
+        'name'         => 'City',
+        'instructions' => 'Specify the city for this address.',
+    ],
+    'shipping_state'          => [
         'name'         => 'State/Region',
         'instructions' => 'Specify the state/region for this address.',
     ],
-    'postal_code'   => [
+    'billing_state'           => [
+        'name'         => 'State/Region',
+        'instructions' => 'Specify the state/region for this address.',
+    ],
+    'shipping_postal_code'    => [
         'name'         => 'ZIP/Postal Code',
         'instructions' => 'Specify the zip/postal code for this address.',
     ],
-    'country'       => [
+    'billing_postal_code'     => [
+        'name'         => 'ZIP/Postal Code',
+        'instructions' => 'Specify the zip/postal code for this address.',
+    ],
+    'shipping_country'        => [
+        'name'         => 'Country',
+        'instructions' => 'Specify the country for this address.',
+    ],
+    'billing_country'         => [
         'name'         => 'Country',
         'instructions' => 'Specify the country for this address.',
     ],

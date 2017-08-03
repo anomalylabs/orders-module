@@ -1,10 +1,8 @@
 <?php
 
-use Anomaly\CustomersModule\Address\AddressModel;
 use Anomaly\CustomersModule\Customer\CustomerModel;
 use Anomaly\OrdersModule\Item\ItemModel;
 use Anomaly\OrdersModule\Order\OrderModel;
-use Anomaly\ShippingModule\Method\MethodModel;
 use Anomaly\Streams\Platform\Database\Migration\Migration;
 
 /**
@@ -104,12 +102,8 @@ class AnomalyModuleOrdersCreateOrdersFields extends Migration
         'entry'       => 'anomaly.field_type.polymorphic',
         'source'      => 'anomaly.field_type.polymorphic',
         'tracking'    => 'anomaly.field_type.text',
-        'method'      => [
-            'type'   => 'anomaly.field_type.relationship',
-            'config' => [
-                'related' => MethodModel::class,
-            ],
-        ],
+        'shipped'     => 'anomaly.field_type.boolean',
+        'method'      => 'anomaly.field_type.polymorphic',
     ];
 
 }
