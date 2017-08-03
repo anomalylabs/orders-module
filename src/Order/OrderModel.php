@@ -95,6 +95,16 @@ class OrderModel extends OrdersOrdersEntryModel implements OrderInterface
     }
 
     /**
+     * Get the company.
+     *
+     * @return string
+     */
+    public function getCompany()
+    {
+        return $this->company;
+    }
+
+    /**
      * Return the tax.
      *
      * @return float

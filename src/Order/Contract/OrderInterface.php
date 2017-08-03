@@ -54,6 +54,13 @@ interface OrderInterface extends EntryInterface
     public function getLastName();
 
     /**
+     * Get the first name.
+     *
+     * @return string
+     */
+    public function getCompany();
+
+    /**
      * Return the tax.
      *
      * @return float

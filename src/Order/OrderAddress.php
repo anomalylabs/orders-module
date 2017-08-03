@@ -30,6 +30,36 @@ class OrderAddress implements AddressInterface
     }
 
     /**
+     * Get the full name.
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return implode(' ', [$this->getFirstName(), $this->getLastName()]);
+    }
+
+    /**
+     * Get the phone.
+     *
+     * @return string
+     */
+    public function getPhone()
+    {
+        return array_get($this->attributes, 'phone');
+    }
+
+    /**
+     * Get the email.
+     *
+     * @return string
+     */
+    public function getEmail()
+    {
+        return array_get($this->attributes, 'email');
+    }
+
+    /**
      * Get the first name.
      *
      * @return string

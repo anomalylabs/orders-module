@@ -22,11 +22,14 @@ trait BillingAddress
     {
         return new OrderAddress(
             [
-                'billing_street_address' => $this->getBillingStreetAddress(),
-                'billing_city'           => $this->getBillingCity(),
-                'billing_state'          => $this->getBillingState(),
-                'billing_postal_code'    => $this->getBillingPostalCode(),
-                'billing_country'        => $this->getBillingCountry(),
+                'first_name'     => $this->getFirstName(),
+                'last_name'      => $this->getLastName(),
+                'company'        => $this->getCompany(),
+                'street_address' => $this->getBillingStreetAddress(),
+                'city'           => $this->getBillingCity(),
+                'state'          => $this->getBillingState(),
+                'postal_code'    => $this->getBillingPostalCode(),
+                'country'        => $this->getBillingCountry(),
             ]
         );
     }

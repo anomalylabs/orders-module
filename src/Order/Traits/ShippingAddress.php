@@ -22,14 +22,14 @@ trait ShippingAddress
     {
         return new OrderAddress(
             [
-                'shipping_first_name'     => $this->getShippingFirstName(),
-                'shipping_last_name'      => $this->getShippingLastName(),
-                'shipping_company'        => $this->getShippingCompany(),
-                'shipping_street_address' => $this->getShippingStreetAddress(),
-                'shipping_city'           => $this->getShippingCity(),
-                'shipping_postal_code'    => $this->getShippingPostalCode(),
-                'shipping_country'        => $this->getShippingCountry(),
-                'shipping_state'          => $this->getShippingState(),
+                'first_name'     => $this->getShippingFirstName(),
+                'last_name'      => $this->getShippingLastName(),
+                'company'        => $this->getShippingCompany(),
+                'street_address' => $this->getShippingStreetAddress(),
+                'city'           => $this->getShippingCity(),
+                'postal_code'    => $this->getShippingPostalCode(),
+                'country'        => $this->getShippingCountry(),
+                'state'          => $this->getShippingState(),
             ]
         );
     }
