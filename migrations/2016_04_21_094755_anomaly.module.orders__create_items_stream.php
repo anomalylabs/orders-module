@@ -40,6 +40,8 @@ class AnomalyModuleOrdersCreateItemsStream extends Migration
             'required' => true,
         ],
         'subtotal',
+        'discounts',
+        'shipping',
         'total',
         'tax',
         'description',
