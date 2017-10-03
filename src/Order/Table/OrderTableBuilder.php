@@ -34,17 +34,14 @@ class OrderTableBuilder extends TableBuilder
      */
     protected $columns = [
         'number',
-        [
-            'heading' => 'anomaly.module.orders::field.status.name',
-            'value'   => 'entry.label(entry.status.value)',
-        ],
         'entry.tags.labels|join(" ")',
-        '{{ currency_format(entry.total()) }}' => [
+        '{{ currency_format(entry.total) }}' => [
             'heading' => 'anomaly.module.orders::field.total.name',
         ],
     ];
 
     /**
+     *
      * The table buttons.
      *
      * @var array|string
@@ -61,19 +58,5 @@ class OrderTableBuilder extends TableBuilder
     protected $actions = [
         'delete',
     ];
-
-    /**
-     * The table options.
-     *
-     * @var array
-     */
-    protected $options = [];
-
-    /**
-     * The table assets.
-     *
-     * @var array
-     */
-    protected $assets = [];
 
 }

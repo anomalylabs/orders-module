@@ -53,7 +53,7 @@ class OrderObserver extends EntryObserver
      */
     public function saving(EntryInterface $entry)
     {
-        $this->dispatch(new TotalOrder($entry));
+        //$this->dispatch(new TotalOrder($entry));
 
         parent::saving($entry);
     }

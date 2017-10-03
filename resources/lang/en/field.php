@@ -128,4 +128,7 @@ return [
         'name'         => 'Country',
         'instructions' => 'Specify the country for this address.',
     ],
+    'status'                  => [
+        'name' => 'Status',
+    ],
 ];
