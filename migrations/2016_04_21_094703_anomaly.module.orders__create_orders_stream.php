@@ -40,16 +40,20 @@ class AnomalyModuleOrdersCreateOrdersStream extends Migration
         'currency'   => [
             'required' => true,
         ],
-        'total',
-        'subtotal',
-        'discounts',
-        'shipping',
-        'tax',
+
         'date',
         'number'     => [
             'unique' => true,
         ],
+
+        'tax',
+        'total',
+        'subtotal',
+        'shipping',
+        'discounts',
+
         'tags',
+        'tracking',
         'customer',
         'checkout_status',
         'payment_status',

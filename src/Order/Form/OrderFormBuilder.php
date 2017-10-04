@@ -20,5 +20,20 @@ class OrderFormBuilder extends FormBuilder
     protected $skips = [
         'str_id',
         'ip_address',
+
+        'state',
+
+        'checkout_status',
+        'payment_status',
+        'shipping_status',
+
+        'quantity',
+
+        'tax',
+        'total',
+        'subtotal',
+        'shipping',
+        'discounts',
+        'currency',
     ];
 }

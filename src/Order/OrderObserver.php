@@ -53,7 +53,11 @@ class OrderObserver extends EntryObserver
      */
     public function saving(EntryInterface $entry)
     {
-        //$this->dispatch(new TotalOrder($entry));
+        $this->dispatch(new TotalOrder($entry));
+
+        if ($entry->tracking) {
+            $entry->shipping_status = 'shipped';
+        }
 
         parent::saving($entry);
     }

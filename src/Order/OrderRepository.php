@@ -54,4 +54,14 @@ class OrderRepository extends EntryRepository implements OrderRepositoryInterfac
     {
         return $this->model->where('user_id', $user->getId())->first();
     }
+
+    /**
+     * Get the last order.
+     *
+     * @return null|OrderInterface
+     */
+    public function getLastOrder()
+    {
+        return $this->model->orderBy('id', 'DESC')->first();
+    }
 }

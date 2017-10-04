@@ -60,6 +60,7 @@ class AnomalyModuleOrdersCreateOrdersFields extends Migration
         'order'           => [
             'type'   => 'anomaly.field_type.relationship',
             'config' => [
+                'mode'    => 'lookup',
                 'related' => OrderModel::class,
             ],
         ],
@@ -72,6 +73,7 @@ class AnomalyModuleOrdersCreateOrdersFields extends Migration
         'customer'        => [
             'type'   => 'anomaly.field_type.relationship',
             'config' => [
+                'mode'    => 'lookup',
                 'related' => CustomerModel::class,
             ],
         ],

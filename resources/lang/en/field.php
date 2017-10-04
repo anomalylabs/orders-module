@@ -131,4 +131,31 @@ return [
     'status'                  => [
         'name' => 'Status',
     ],
+    'shipping'                => [
+        'name' => 'Shipping',
+    ],
+    'first_name'              => [
+        'name' => 'First Name',
+    ],
+    'last_name'               => [
+        'name' => 'Last Name',
+    ],
+    'tax_number'              => [
+        'name' => 'Tax Number',
+    ],
+    'notes'                   => [
+        'name' => 'Notes',
+    ],
+    'shipping_company'        => [
+        'name' => 'Shipping Company',
+    ],
+    'order'                   => [
+        'name' => 'Order',
+    ],
+    'method'                  => [
+        'name' => 'Method',
+    ],
+    'tracking'                => [
+        'name' => 'Tracking',
+    ],
 ];

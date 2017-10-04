@@ -39,7 +39,7 @@ class OrderSequence
     public function next($default = null)
     {
         /* @var OrderInterface $last */
-        if (!$last = $this->orders->first('DESC')) {
+        if (!$last = $this->orders->getLastOrder()) {
             return $default;
         }
 

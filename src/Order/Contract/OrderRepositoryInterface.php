@@ -29,4 +29,11 @@ interface OrderRepositoryInterface extends EntryRepositoryInterface
      * @return null|OrderInterface
      */
     public function findByUser(UserInterface $user);
+
+    /**
+     * Get the last order.
+     *
+     * @return null|OrderInterface
+     */
+    public function getLastOrder();
 }
