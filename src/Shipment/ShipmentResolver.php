@@ -3,7 +3,7 @@
 use Anomaly\OrdersModule\Item\Contract\ItemInterface;
 use Anomaly\OrdersModule\Order\Contract\OrderInterface;
 use Anomaly\ShippingModule\Group\GroupCollection;
-use Anomaly\StoreModule\Contract\ShippableInterface;
+use Anomaly\ShippingModule\Shipping\Contract\ShippableInterface;
 
 class ShipmentResolver
 {

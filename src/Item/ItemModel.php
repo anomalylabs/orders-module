@@ -4,7 +4,7 @@ use Anomaly\OrdersModule\Order\Contract\OrderInterface;
 use Anomaly\OrdersModule\Item\Contract\ItemInterface;
 use Anomaly\OrdersModule\Modifier\ModifierCollection;
 use Anomaly\OrdersModule\Modifier\ModifierModel;
-use Anomaly\StoreModule\Contract\PurchasableInterface;
+use Anomaly\ProductsModule\Contract\PurchasableInterface;
 use Anomaly\Streams\Platform\Entry\Contract\EntryInterface;
 use Anomaly\Streams\Platform\Image\Image;
 use Anomaly\Streams\Platform\Model\Orders\OrdersItemsEntryModel;

@@ -4,7 +4,7 @@ use Anomaly\OrdersModule\Order\Contract\OrderInterface;
 use Anomaly\OrdersModule\Item\Contract\ItemInterface;
 use Anomaly\OrdersModule\Item\Contract\ItemRepositoryInterface;
 use Anomaly\OrdersModule\Item\ItemModel;
-use Anomaly\StoreModule\Contract\PurchasableInterface;
+use Anomaly\ProductsModule\Contract\PurchasableInterface;
 use Anomaly\Streams\Platform\Model\EloquentModel;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 

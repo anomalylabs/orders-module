@@ -1,6 +1,6 @@
 <?php namespace Anomaly\OrdersModule\Order;
 
-use Anomaly\StoreModule\Contract\CartInterface;
+use Anomaly\CartsModule\Cart\Contract\CartInterface;
 use Anomaly\StoreModule\Contract\OrderInterface;
 
 /**
